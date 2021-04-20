@@ -10,14 +10,14 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1,
-    accessToken: '' //plak de token als string hier 
+    accessToken: 'pk.eyJ1Ijoic3JtaWVwIiwiYSI6ImNrbmZyc2o2aTBrMm4yeG53bHhlZWNxMHoifQ.oQ09lfMb1f7mL3gLm_ji7Q'
 }).addTo(mymap);
 
 // Voor een access token maak je account aan https://account.mapbox.com/access-tokens/
 // plak de code in het object hierboven
 
 var myIcon = L.icon({
-    iconUrl: 'roc.jpg',
+    iconUrl: 'images/roc.jpg',
     iconSize: [24, 24],
 });
 
