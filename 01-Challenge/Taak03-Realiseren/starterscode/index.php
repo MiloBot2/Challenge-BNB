@@ -2,9 +2,9 @@
 // Je hebt een database nodig om dit bestand te gebruiken....
 require "database.php";
 
-if (!isset($db_conn)) { //deze if-statement checkt of er een database-object aanwezig is. Kun je laten staan.
+//deze if-statement checkt of er een database-object aanwezig is. Kun je laten staan.
+if (!isset($db_conn))
     return;
-}
 
 $error = null;
 $totale_bedrag = 0;
@@ -15,7 +15,6 @@ $bathIsChecked = false;
 $sql = "SELECT * FROM homes"; //Selecteer alle huisjes uit de database
 
 if (isset($_GET['filter_submit'])) {
-
     /* Is er een bad? */
     if ($_GET['faciliteiten'] == "ligbad") {
         $bathIsChecked = true;
@@ -61,20 +60,14 @@ if (isset($_GET['filter_submit'])) {
 
 function isTrue($value)
 {
-    if ($value === "true") {
-        return true;
-    } elseif ($value === true) {
-        return true;
-    } else {
-        return false;
-    }
+    if ($value === "true") return true;
+    elseif ($value === true) return true;
+    else return false;
 }
 
 function getPrice($pp, $ppPrice, $days, $beddengoed, $bdPrice, $fiets, $bikePrice)
 {
     $totaleBedrag = 0;
-
-
 
     $totaleBedrag = $ppPrice * $pp * $days;
 
@@ -89,16 +82,12 @@ function getPrice($pp, $ppPrice, $days, $beddengoed, $bdPrice, $fiets, $bikePric
 
 function getBikeSelection($bike)
 {
-    if (isTrue($bike)) {
-        return 1;
-    }
-    return 0;
+    return isTrue($bike) ? 1 : 0;
 }
 
 /* Deze if-statement controleert of een sql-query correct geschreven is en dus data ophaalt uit de DB. */
-if (is_object($db_conn->query($sql))) {
+if (is_object($db_conn->query($sql)))
     $database_gegevens = $db_conn->query($sql)->fetchAll(PDO::FETCH_ASSOC); // Zeer belangrijke code!!!
-}
 
 if (isset($_GET['reserveer'])) {
     $sql1 = "SELECT * FROM homes WHERE id = ";
@@ -108,27 +97,18 @@ if (isset($_GET['reserveer'])) {
 
     if (!isset($pp) || $pp != null) {
         if (!isset($days) || $days != null) {
-
-            if (is_object($db_conn->query($sql1))) {
+            if (is_object($db_conn->query($sql1)))
                 $database_gegevens1 = $db_conn->query($sql1)->fetchAll(PDO::FETCH_ASSOC); // Zeer belangrijke code!!!
-            }
+
             foreach ($database_gegevens1 as $huisje) {
                 if ($pp <= $huisje['max_capacity']) {
-                    if (getBikeSelection($_GET['bikeRental'] ?? null) == $huisje['bike_rental'] || getBikeSelection($_GET['bikeRental'] ?? null) == 0) {
+                    if (getBikeSelection($_GET['bikeRental'] ?? null) == $huisje['bike_rental'] || getBikeSelection($_GET['bikeRental'] ?? null) == 0)
                         $totale_bedrag = getPrice($pp, $huisje['price_p_p_p_n'], $days, $_GET['beddengoed'] ?? null, $huisje['price_bed_sheets'], $_GET['bikeRental'] ?? null, $huisje['price_bike_rental']);
-                    } else {
-                        $error = "Er is geen fietverhuur beschikbaar op deze locatie!";
-                    }
-                } else {
-                    $error = "Je hebt teveel personen er kunnen maximaal " . $huisje['max_capacity'] . " personen verblijven!";
-                }
+                    else $error = "Er is geen fietverhuur beschikbaar op deze locatie!";
+                } else $error = "Je hebt teveel personen er kunnen maximaal " . $huisje['max_capacity'] . " personen verblijven!";
             }
-        } else {
-            $error = "Vul het aantal dagen in!";
-        }
-    } else {
-        $error = "Vul het aantal personen in!";
-    }
+        } else $error = "Vul het aantal dagen in!";
+    } else $error = "Vul het aantal personen in!";
 }
 
 ?>
@@ -241,7 +221,6 @@ if (isset($_GET['reserveer'])) {
                             <div class="kenmerken">
                                 <h6>Kenmerken</h6>
                                 <ul>
-
                                     <?php
                                     if ($huisje['bath_present'] == 1)
                                         echo "<li>Er is een ligbad</li>";
@@ -270,9 +249,7 @@ if (isset($_GET['reserveer'])) {
                                     }
                                     ?>
                                 </ul>
-
                             </div>
-
                             <div>
                                 <h5>PP nacht:</h5>
                                 Totale prijs &euro;
