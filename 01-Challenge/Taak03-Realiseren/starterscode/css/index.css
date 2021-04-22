@@ -1,51 +1,69 @@
 #mapid {
-    height: 670px;
+  height: 670px;
+}
+
+body {
+  background-color: rgb(245, 233, 126);
 }
 
 main {
-    display: flex;
+  display: flex;
 }
 
-main .left{
-    width: 50%;}
+main .left {
+  width: 50%;
+}
 
 main .right {
-    margin-left: 20px;
-    width: 50%;
+  margin-left: 20px;
+  width: 50%;
 }
 
 .right .filter-box .homes-box {
-    width: 100%;
-    padding: 20px;
-    list-style: none;
+  width: 100%;
+  padding: 20px;
+  list-style: none;
 }
 
 footer {
-    display: flex;
-    position: static;
-    bottom: 0px;
-    height: 100px;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    border-top: 1px solid blue;
+  display: flex;
+  position: static;
+  bottom: 0px;
+  height: 100px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid blue;
 }
 
 footer div {
-    width: 33%;
-    height: 20px;
+  width: 33%;
+  height: 20px;
 }
 
-.filter-box label{
-    width: 100px;
-    line-height: 1.8em;
+.filter-box label {
+  width: 100px;
+  line-height: 1.8em;
 }
 
-.form-control{
-    line-height: 50px;
+.form-control {
+  line-height: 25px;
+  padding: 20px;
 }
 
-.form-control label{
-    letter-spacing: 0.15em;
+.form-control label {
+  letter-spacing: 0.15em;
+}
 
+.reserveer_knop,
+.book {
+  margin: auto;
+  width: 75%;
+  padding: 20px;
+}
+
+.currentBooking {
+  margin: auto;
+  width: 75%;
+  padding: 20px;
 }
